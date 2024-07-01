@@ -19,10 +19,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <ReduxProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className="bg-white">
+        <html lang="en" suppressHydrationWarning>
+          <body className="bg-gray-100">
             {children}
-        </body>
+          </body>
         </html>
       </ReduxProvider>
     </ClerkProvider>

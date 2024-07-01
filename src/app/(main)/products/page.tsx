@@ -1,9 +1,10 @@
+import ProductsPage from '@/components/FeaturePage/RenderCards'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      This is all product page
+      <ProductsPage />
     </div>
   )
 }
