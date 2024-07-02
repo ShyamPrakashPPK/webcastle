@@ -67,7 +67,7 @@ const ProductsPage: React.FC = () => {
                     <Loader />
                 </div>
             ) : (
-                <div className="flex ">
+                <div className="flex flex-col md:flex-row">
                     <div>
                         <Filters onFilterChange={handleFilterChange} />
                     </div>
