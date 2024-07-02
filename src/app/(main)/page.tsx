@@ -1,4 +1,4 @@
-import CategoriesPage from '@/components/productpages/categoriesCards'
+import CategoriesPage from '@/components/products/categoriesCards'
 import Link from 'next/link'
 import React from 'react'
 

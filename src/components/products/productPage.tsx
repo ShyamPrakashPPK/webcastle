@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store/store/store";
@@ -7,9 +6,9 @@ import {
     productSelectors,
     getProducts
 } from "@/store/reducers/product";
-import ProductCard from "@/components/cards/ProductCards";
+import ProductCard from "@/components/Cards/ProductCards";
 import Loader from "../Loader/Loader";
-import Filters from "@/components/productpages/productFilter";
+import Filters from "@/components/products/productFilter";
 import { Product } from "@/lib/types/productTypes";
 
 const ProductsPage: React.FC = () => {
