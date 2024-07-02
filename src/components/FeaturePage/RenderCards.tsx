@@ -85,6 +85,8 @@ const ProductsPage: React.FC = () => {
                                 >
                                     Previous
                                 </button>
+                                <div className="ml-2 p-2 bg-gray-300 rounded" >{page +1}</div>
+                                
                                 <button
                                     disabled={page >= Math.ceil(getProductsData?.total / limit) - 1}
                                     onClick={() => handlePageChange(page + 1)}
@@ -129,6 +131,8 @@ const ProductsPage: React.FC = () => {
                 >
                     Previous
                 </button>
+                <div className="ml-2 p-2 bg-gray-300 rounded" >{page + 1}</div>
+
                 <button
                     disabled={page >= Math.ceil(getProductsData?.total / limit) - 1}
                     onClick={() => handlePageChange(page + 1)}
