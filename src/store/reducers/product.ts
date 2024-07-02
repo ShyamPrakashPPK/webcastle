@@ -1,14 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import productServices from "@/api/axios/products";
 
+
+interface FetchProductsParams {
+    limit: number;
+    skip: number;
+}
+
+
 const getProducts = createAsyncThunk(
     "get/products",
-    async () => {
-        const response = await productServices.getProducts();
-        return response; 
+    async ({ limit, skip }: FetchProductsParams) => {
+        const response = await productServices.getProducts(limit, skip);
+        return response;
     }
 );
-
 
 interface Product {
     id: number;
@@ -71,34 +77,30 @@ const initialState: ProductState = {
     },
 };
 
-// Product Slice
-const productSlice:any = createSlice({
+const productSlice = createSlice({
     name: "product",
     initialState,
     reducers: {},
-    extraReducers: (builder:any) => {
+    extraReducers: (builder) => {
         builder
-            .addCase(getProducts.pending, (state:any) => {
+            .addCase(getProducts.pending, (state) => {
                 state.getProducts.loading = true;
                 state.getProducts.error = null;
             })
-            .addCase(getProducts.fulfilled, (state:any, action: any) => {
+            .addCase(getProducts.fulfilled, (state, action) => {
                 state.getProducts.loading = false;
                 state.getProducts.data = action.payload;
             })
-            .addCase(getProducts.rejected, (state:any, action:any) => {
+            .addCase(getProducts.rejected, (state, action) => {
                 state.getProducts.loading = false;
                 state.getProducts.error = action.error.message || 'Failed to fetch products';
             });
     },
 });
 
-// Selectors
 const productSelectors = {
-    getProducts: (state: { product: ProductState }) => state.product.getProducts,
+    getProducts: (state:any) => state.product.getProducts,
 };
-
-export const {  } = productSlice.actions;
 
 export { getProducts, productSelectors };
 

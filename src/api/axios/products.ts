@@ -3,18 +3,16 @@ import axios from "axios";
 const baseURL = 'https://dummyjson.com/products';
 
 const productServices = {
-    getProducts: async () => {
+    getProducts: async (limit = 28, skip = 0) => {
         try {
-            const response = await axios.get(baseURL);
-            console.log(response.data,"data=0-0-0-0-000");
-            
-            return response.data; 
+            const response = await axios.get(`${baseURL}?limit=${limit}&skip=${skip}`);
+            return response.data;
         } catch (error) {
             console.error("Error fetching products:", error);
-            throw error; 
+            throw error;
         }
     },
-    getSingleProduct: async (id: string) => {
+    getSingleProduct: async (id:string) => {
         try {
             const response = await axios.get(`${baseURL}/${id}`);
             return response.data;

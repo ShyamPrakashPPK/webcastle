@@ -1,6 +1,7 @@
 // pages/products.tsx
 
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store/store/store";
@@ -11,8 +12,7 @@ import {
 import ProductCard from "../Cards/ProductCards";
 import Loader from "../Loader/Loader";
 import Filters from "./Filters";
-
-
+import { Product } from "@/lib/types/productTypes";
 
 const ProductsPage: React.FC = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -22,12 +22,14 @@ const ProductsPage: React.FC = () => {
         error: getProductsError,
     } = useSelector(productSelectors.getProducts);
 
-    const [loadedProducts, setLoadedProducts] = useState<any[]>([]);
+    const [loadedProducts, setLoadedProducts] = useState<Product[]>([]);
     const [filters, setFilters] = useState<any>({ rating: null, priceRange: [0, 1000], discount: null });
+    const [page, setPage] = useState(0);
+    const limit = 28;
 
     useEffect(() => {
-        dispatch(getProducts());
-    }, [dispatch]);
+        dispatch(getProducts({ limit, skip: page * limit }));
+    }, [dispatch, page]);
 
     useEffect(() => {
         if (getProductsData && getProductsData.products) {
@@ -40,15 +42,15 @@ const ProductsPage: React.FC = () => {
             let filteredProducts = getProductsData.products;
 
             if (filters.rating) {
-                filteredProducts = filteredProducts.filter(product => product.rating >= filters.rating);
+                filteredProducts = filteredProducts.filter((product: { rating: number; }) => product.rating >= filters.rating);
             }
 
             if (filters.priceRange) {
-                filteredProducts = filteredProducts.filter(product => product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1]);
+                filteredProducts = filteredProducts.filter((product: { price: number; }) => product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1]);
             }
 
             if (filters.discount) {
-                filteredProducts = filteredProducts.filter(product => product.discountPercentage >= filters.discount);
+                filteredProducts = filteredProducts.filter((product: { discountPercentage: number; }) => product.discountPercentage >= filters.discount);
             }
 
             setLoadedProducts(filteredProducts);
@@ -59,9 +61,12 @@ const ProductsPage: React.FC = () => {
         setFilters(newFilters);
     };
 
+    const handlePageChange = (newPage: number) => {
+        setPage(newPage);
+    };
+
     return (
         <div className="h-full md:p-10">
-
             {getProductsLoading ? (
                 <div className="flex justify-center items-start h-[100vh] text-3xl font-light text-green-500">
                     <Loader />
@@ -71,11 +76,26 @@ const ProductsPage: React.FC = () => {
                     <div>
                         <Filters onFilterChange={handleFilterChange} />
                     </div>
-                    <div>
+                        <div>
+                            <div className="flex justify-center mt-4">
+                                <button
+                                    disabled={page === 0}
+                                    onClick={() => handlePageChange(page - 1)}
+                                    className="p-2 bg-gray-300 rounded"
+                                >
+                                    Previous
+                                </button>
+                                <button
+                                    disabled={page >= Math.ceil(getProductsData?.total / limit) - 1}
+                                    onClick={() => handlePageChange(page + 1)}
+                                    className="p-2 bg-gray-300 rounded ml-2"
+                                >
+                                    Next
+                                </button>
+                            </div>
                         {loadedProducts.length > 0 ? (
                             <div className="grid md:gap-7 grid-cols-1 md:grid-cols-4 md:px-5 md:pb-10">
-                                {loadedProducts.map((product, index) => (
-
+                                {loadedProducts.map((product: any, index) => (
                                     <ProductCard
                                         key={index}
                                         id={product.id}
@@ -94,9 +114,6 @@ const ProductsPage: React.FC = () => {
                             </div>
                         )}
                     </div>
-
-
-
                 </div>
             )}
             {getProductsError && (
@@ -104,6 +121,22 @@ const ProductsPage: React.FC = () => {
                     <p>{getProductsError}</p>
                 </div>
             )}
+            <div className="flex justify-center mt-4">
+                <button
+                    disabled={page === 0}
+                    onClick={() => handlePageChange(page - 1)}
+                    className="p-2 bg-gray-300 rounded"
+                >
+                    Previous
+                </button>
+                <button
+                    disabled={page >= Math.ceil(getProductsData?.total / limit) - 1}
+                    onClick={() => handlePageChange(page + 1)}
+                    className="p-2 bg-gray-300 rounded ml-2"
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 };
