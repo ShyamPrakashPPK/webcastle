@@ -1,5 +1,3 @@
-// pages/categories.tsx
-
 "use client";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,9 +5,8 @@ import { AppDispatch } from "@/store/store/store";
 import {
     categorySelectors,
     getCategories
-} from "@/store/reducers/category"; // Adjust import path as per your project structure
+} from "@/store/reducers/category";
 import Loader from "../Loader/Loader";
-import Image from "next/image";
 
 
 
@@ -44,8 +41,8 @@ const CategoriesPage: React.FC = () => {
 
         if (getCategoriesData && getCategoriesData.length > 0) {
             return (
-                <div className="flex flex-col text-center items-center justify-center my-10">
-                    <div className="bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text my-10 text-5xl font-black">
+                <div className="flex flex-col text-center items-center justify-center mb-6 mt-20">
+                    <div className="bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text my-6 mt-36 text-5xl font-black">
                         Our Products
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:p-10">

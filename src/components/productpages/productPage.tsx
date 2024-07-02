@@ -1,5 +1,3 @@
-// pages/products.tsx
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -9,9 +7,9 @@ import {
     productSelectors,
     getProducts
 } from "@/store/reducers/product";
-import ProductCard from "../Cards/ProductCards";
+import ProductCard from "../cards/ProductCards";
 import Loader from "../Loader/Loader";
-import Filters from "./Filters";
+import Filters from "./productFilter";
 import { Product } from "@/lib/types/productTypes";
 
 const ProductsPage: React.FC = () => {
@@ -25,7 +23,7 @@ const ProductsPage: React.FC = () => {
     const [loadedProducts, setLoadedProducts] = useState<Product[]>([]);
     const [filters, setFilters] = useState<any>({ rating: null, priceRange: [0, 1000], discount: null });
     const [page, setPage] = useState(0);
-    const limit = 28;
+    const limit = 30;
 
     useEffect(() => {
         dispatch(getProducts({ limit, skip: page * limit }));
@@ -132,7 +130,6 @@ const ProductsPage: React.FC = () => {
                     Previous
                 </button>
                 <div className="ml-2 p-2 bg-gray-300 rounded" >{page + 1}</div>
-
                 <button
                     disabled={page >= Math.ceil(getProductsData?.total / limit) - 1}
                     onClick={() => handlePageChange(page + 1)}

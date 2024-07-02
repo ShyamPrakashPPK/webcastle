@@ -1,4 +1,4 @@
-import ProductsPage from '@/components/FeaturePage/RenderCards'
+import ProductsPage from '@/components/productpages/productPage'
 import React from 'react'
 
 const page = () => {

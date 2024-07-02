@@ -1,4 +1,4 @@
-import CategoriesPage from '@/components/FeaturePage/CategoryCards'
+import CategoriesPage from '@/components/productpages/categoriesCards'
 import Link from 'next/link'
 import React from 'react'
 
@@ -21,10 +21,10 @@ const page = () => {
                     </div>
                 </div>
             </div>
-           
+
 
             <div>
-                <CategoriesPage/>
+                <CategoriesPage />
             </div>
         </section>
     )

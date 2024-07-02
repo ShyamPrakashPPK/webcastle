@@ -1,6 +1,9 @@
+
 import axios from "axios";
 
-const baseURL = 'https://dummyjson.com/products';
+// const baseURL = 'https://dummyjson.com/products';
+
+const baseURL = process.env.NEXT_PUBLIC_API_URL
 
 const categoryServices = {
     getCategories: async () => {

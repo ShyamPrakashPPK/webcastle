@@ -5,7 +5,6 @@ import { Product } from '@/lib/types/productTypes'
 import productServices from '@/api/axios/products';
 import Image from 'next/image';
 import Loader from '../Loader/Loader';
-import { StarRating } from './star-rating';
 import { Star } from 'lucide-react';
 
 
@@ -21,8 +20,6 @@ const ProductDetails: React.FC = () => {
     const fetchProduct = async () => {
       try {
         const data = await productServices.getSingleProduct(id);
-        console.log(data, "data here------------------");
-
         setProduct(data);
       } catch (error: any) {
         setError(error.message);
@@ -30,7 +27,6 @@ const ProductDetails: React.FC = () => {
         setLoading(false);
       }
     };
-
     fetchProduct();
   }, [id]);
 
@@ -63,20 +59,14 @@ const ProductDetails: React.FC = () => {
                 <p className=''> {product.shippingInformation}</p>
                 <p className=''> {product.availabilityStatus}</p>
               </div>
-             
               <button className='bg-green-500 text-white py-2 px-4 rounded-md mb-4'>Add to Cart</button>
               <p className='text-lg mb-2'>{product.returnPolicy}</p>
-
-
               <div className='flex flex-col gap-2 text-sm' >
                 <p className='text-md font-bold'>More details</p>
                 <p ><strong>Weight:</strong> {product.weight} grams</p>
                 <p ><strong>Dimensions:</strong> {product.dimensions.width}x{product.dimensions.height}x{product.dimensions.depth} cm</p>
               </div>
-          
-
             </div>
-
           </div>
           <div className=' p-10 mt-24'>
             <div>
