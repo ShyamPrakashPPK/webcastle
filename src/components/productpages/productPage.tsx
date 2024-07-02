@@ -7,9 +7,9 @@ import {
     productSelectors,
     getProducts
 } from "@/store/reducers/product";
-import ProductCard from "@/components/cards/ProductCards";
+import ProductCard from "@/components/Cards/ProductCards";
 import Loader from "../Loader/Loader";
-import Filters from "./productFilter";
+import Filters from "@/components/productpages/productFilter";
 import { Product } from "@/lib/types/productTypes";
 
 const ProductsPage: React.FC = () => {
@@ -74,25 +74,25 @@ const ProductsPage: React.FC = () => {
                     <div>
                         <Filters onFilterChange={handleFilterChange} />
                     </div>
-                        <div>
-                            <div className="flex justify-center mt-4">
-                                <button
-                                    disabled={page === 0}
-                                    onClick={() => handlePageChange(page - 1)}
-                                    className="p-2 bg-gray-300 rounded"
-                                >
-                                    Previous
-                                </button>
-                                <div className="ml-2 p-2 bg-gray-300 rounded" >{page +1}</div>
-                                
-                                <button
-                                    disabled={page >= Math.ceil(getProductsData?.total / limit) - 1}
-                                    onClick={() => handlePageChange(page + 1)}
-                                    className="p-2 bg-gray-300 rounded ml-2"
-                                >
-                                    Next
-                                </button>
-                            </div>
+                    <div>
+                        <div className="flex justify-center mt-4">
+                            <button
+                                disabled={page === 0}
+                                onClick={() => handlePageChange(page - 1)}
+                                className="p-2 bg-gray-300 rounded"
+                            >
+                                Previous
+                            </button>
+                            <div className="ml-2 p-2 bg-gray-300 rounded" >{page + 1}</div>
+
+                            <button
+                                disabled={page >= Math.ceil(getProductsData?.total / limit) - 1}
+                                onClick={() => handlePageChange(page + 1)}
+                                className="p-2 bg-gray-300 rounded ml-2"
+                            >
+                                Next
+                            </button>
+                        </div>
                         {loadedProducts.length > 0 ? (
                             <div className="grid md:gap-7 grid-cols-1 md:grid-cols-4 md:px-5 md:pb-10">
                                 {loadedProducts.map((product: any, index) => (
