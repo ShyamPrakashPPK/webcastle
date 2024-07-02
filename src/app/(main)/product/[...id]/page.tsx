@@ -1,17 +1,13 @@
-"use client"
-import { useParams } from 'next/navigation'
+import ProductDetails from '@/components/product-details/ProductDetails';
 import React from 'react'
 
-const ProductDetails = () => {
+const ProductDetail = () => {
 
-    const params = useParams();
-
-    const id = params.id.toString();
     return (
-        <div className='text-xl font-black text-green-500'>
-            {id}
+        <div>
+           <ProductDetails/>
         </div>
     )
 }
 
-export default ProductDetails;
+export default ProductDetail;
