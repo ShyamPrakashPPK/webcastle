@@ -1,7 +1,7 @@
 "use client"
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import { Product } from '@/utils/types/productTypes'
+import { Product } from '@/lib/types/productTypes'
 import productServices from '@/api/axios/products';
 import Image from 'next/image';
 import Loader from '../Loader/Loader';
@@ -47,25 +47,33 @@ const ProductDetails: React.FC = () => {
       {product ? (
         <div className='flex flex-col'>
           <div className='flex flex-row items-center'>
-            <div className=' p-4 flex justify-center'>
+            <div className=' p-4 flex justify-center w-1/3'>
               <Image width={1000} height={1000} src={product.images[0]} alt={product.title} className=' h-[90vh] w-auto rounded-md' />
             </div>
-            <div>
+            <div className='w-2/3'>
               <p className='text-sm mb-2'>{product.brand}</p>
               <h1 className='text-2xl font-bold mb-2'>{product.title}</h1>
               <p className='text-sm font-medium mb-4'>{product.description}</p>
               <p className='text-sm py-1 mb-2 bg-gray-600 rounded-xl px-5 w-min'> {product.category}</p>
-              <p className='text-lg mb-2'><strong>Rating:</strong> {product.rating}</p>
-              <StarRating rating={product.rating} />
-              <p className='text-lg mb-2'><strong>Price:</strong> ${product.price}</p>
-              <p className='text-lg mb-2'><strong>Discount:</strong> {product.discountPercentage}%</p>
-              <p className='text-lg mb-2'><strong>Weight:</strong> {product.weight} grams</p>
-              <p className='text-lg mb-2'><strong>Dimensions:</strong> {product.dimensions.width}x{product.dimensions.height}x{product.dimensions.depth} cm</p>
-              <p className='text-lg mb-2'><strong>Warranty:</strong> {product.warrantyInformation}</p>
-              <p className='text-lg mb-2'><strong>Shipping:</strong> {product.shippingInformation}</p>
-              <p className='text-lg mb-2'><strong>Availability:</strong> {product.availabilityStatus}</p>
+              <div className='flex flex-row text-md items-center' ><Star className='p-1' /> {product.rating}</div>
+              <p className='text-sm mt-2'>{product.discountPercentage}% off</p>
+              <p className='font-bold mb-2 text-2xl'>${product.price}</p>
+              <div className="flex flex-row gap-10 text-sm mb-3">
+                <p className=''> {product.warrantyInformation}</p>
+                <p className=''> {product.shippingInformation}</p>
+                <p className=''> {product.availabilityStatus}</p>
+              </div>
+             
               <button className='bg-green-500 text-white py-2 px-4 rounded-md mb-4'>Add to Cart</button>
-              <p className='text-lg mb-2'><strong>Return Policy:</strong> {product.returnPolicy}</p>
+              <p className='text-lg mb-2'>{product.returnPolicy}</p>
+
+
+              <div className='flex flex-col gap-2 text-sm' >
+                <p className='text-md font-bold'>More details</p>
+                <p ><strong>Weight:</strong> {product.weight} grams</p>
+                <p ><strong>Dimensions:</strong> {product.dimensions.width}x{product.dimensions.height}x{product.dimensions.depth} cm</p>
+              </div>
+          
 
             </div>
 

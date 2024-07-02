@@ -1,6 +1,7 @@
 "use client"
-// components/Filters/Filters.tsx
 import React, { useState } from 'react';
+import { Slider } from "@/components/ui/slider"
+
 
 const Filters: React.FC<{ onFilterChange: (filters: any) => void }> = ({ onFilterChange }) => {
     const [rating, setRating] = useState<number | null>(null);

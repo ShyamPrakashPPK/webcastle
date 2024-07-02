@@ -67,30 +67,36 @@ const ProductsPage: React.FC = () => {
                     <Loader />
                 </div>
             ) : (
+                <div className="flex ">
                     <div>
                         <Filters onFilterChange={handleFilterChange} />
+                    </div>
+                    <div>
+                        {loadedProducts.length > 0 ? (
+                            <div className="grid gap-7 grid-cols-1 md:grid-cols-4 px-5 pb-10">
+                                {loadedProducts.map((product, index) => (
 
-                    {loadedProducts.length > 0 ? (
-                        <div className="grid gap-7 grid-cols-1 md:grid-cols-4 px-5 pb-10">
-                            {loadedProducts.map((product, index) => (
+                                    <ProductCard
+                                        key={index}
+                                        id={product.id}
+                                        title={product.title}
+                                        rating={product.rating}
+                                        price={product.price}
+                                        brand={product.brand}
+                                        thumbnail={product.thumbnail}
+                                        discountPercentage={product.discountPercentage}
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center mt-10">
+                                <p>No products available.</p>
+                            </div>
+                        )}
+                    </div>
 
-                                <ProductCard
-                                    key={index}
-                                    id={product.id}
-                                    title={product.title}
-                                    rating={product.rating}
-                                    price={product.price}
-                                    brand={product.brand}
-                                    thumbnail={product.thumbnail}
-                                    discountPercentage={product.discountPercentage}
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="text-center mt-10">
-                            <p>No products available.</p>
-                        </div>
-                    )}
+
+
                 </div>
             )}
             {getProductsError && (
