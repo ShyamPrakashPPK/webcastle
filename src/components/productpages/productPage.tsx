@@ -7,7 +7,7 @@ import {
     productSelectors,
     getProducts
 } from "@/store/reducers/product";
-import ProductCard from "@/components/Cards/ProductCards";
+import ProductCard from "@/components/cards/ProductCards";
 import Loader from "../Loader/Loader";
 import Filters from "@/components/productpages/productFilter";
 import { Product } from "@/lib/types/productTypes";
