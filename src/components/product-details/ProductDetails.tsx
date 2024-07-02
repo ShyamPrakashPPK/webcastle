@@ -43,12 +43,12 @@ const ProductDetails: React.FC = () => {
   }
 
   return (
-    <div className=' text-gray-800 p-10'>
+    <div className=' text-gray-800 md:p-10'>
       {product ? (
         <div className='flex flex-col'>
-          <div className='flex flex-row items-center'>
-            <div className=' p-4 flex justify-center w-1/3'>
-              <Image width={1000} height={1000} src={product.images[0]} alt={product.title} className=' h-[90vh] w-auto rounded-md' />
+          <div className='flex flex-col md:flex-row items-center'>
+            <div className=' md:p-4 flex justify-center md:w-1/3'>
+              <Image width={1000} height={1000} src={product.images[0]} alt={product.title} className=' md:h-[90vh] w-auto rounded-md' />
             </div>
             <div className='w-2/3'>
               <p className='text-sm mb-2'>{product.brand}</p>
@@ -78,7 +78,7 @@ const ProductDetails: React.FC = () => {
             </div>
 
           </div>
-          <div className=''>
+          <div className=' p-10 mt-24'>
             <div>
               <h2 className='text-xl font-bold mb-2'>Reviews:</h2>
               {product.reviews.map((review, index) => (

@@ -1,7 +1,8 @@
 import product from "./product";
-
+import categories from "./category";
 const reducers = {
-    product
+    product,
+    categories
 }
 
 export default reducers

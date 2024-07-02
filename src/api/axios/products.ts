@@ -6,6 +6,8 @@ const productServices = {
     getProducts: async () => {
         try {
             const response = await axios.get(baseURL);
+            console.log(response.data,"data=0-0-0-0-000");
+            
             return response.data; 
         } catch (error) {
             console.error("Error fetching products:", error);

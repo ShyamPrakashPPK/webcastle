@@ -9,7 +9,7 @@ const Navbar = () => {
                 <Link href={'/'}>
                     WebCastleStore
                 </Link>
-                <Link className='text-[14px] font-medium ml-12 text-gray-600 hover:bg-gray-400 rounded-md transition-transform px-3 py-1' href={'/products'}>
+                <Link className='text-[10px] md:text-[14px] font-medium ml-1 md:ml-12 text-gray-600 hover:bg-gray-400 rounded-md transition-transform px-1 md:px-3 md:py-1' href={'/products'}>
                     All Products
                 </Link>
             </div>

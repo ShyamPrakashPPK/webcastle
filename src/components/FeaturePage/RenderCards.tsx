@@ -60,20 +60,20 @@ const ProductsPage: React.FC = () => {
     };
 
     return (
-        <div className="h-full p-10">
+        <div className="h-full md:p-10">
 
             {getProductsLoading ? (
                 <div className="flex justify-center items-start h-[100vh] text-3xl font-light text-green-500">
                     <Loader />
                 </div>
             ) : (
-                <div className="flex flex-col md:flex-row">
+                <div className="flex flex-col md:flex-row ">
                     <div>
                         <Filters onFilterChange={handleFilterChange} />
                     </div>
                     <div>
                         {loadedProducts.length > 0 ? (
-                            <div className="grid gap-7 grid-cols-1 md:grid-cols-4 px-5 pb-10">
+                            <div className="grid md:gap-7 grid-cols-1 md:grid-cols-4 md:px-5 md:pb-10">
                                 {loadedProducts.map((product, index) => (
 
                                     <ProductCard
