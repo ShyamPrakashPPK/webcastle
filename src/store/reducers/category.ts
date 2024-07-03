@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import categoryServices from "@/api/axios/category"; // Adjust this path as per your project structure
+import categoryServices from "@/api/axios/category"; 
 
-// Async action to fetch categories
 const getCategories = createAsyncThunk(
     "categories/get",
     async () => {
