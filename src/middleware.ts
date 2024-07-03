@@ -15,7 +15,7 @@ export default clerkMiddleware((auth, req, res) => {
     if (publicRoutes(req)) {
         return;
     }
-
+  
     if (isProtectedRoute(req)) {
         auth().protect();
     }
